@@ -11,21 +11,21 @@ class BColors:
 
 class Console:
    def header( self, log: object ):
-      print(BColors.HEADER + log + BColors.ENDC)
-   def okblue( log: object):
-      print(BColors.OKBLUE + log + BColors.ENDC)
-   def okcyan( log: object):
-      print(BColors.OKCYAN + log + BColors.ENDC)
-   def okgreen( log: object):
-      print(BColors.OKGREEN + log + BColors.ENDC)
-   def warn( log: object):
-      print(BColors.WARNING + log + BColors.ENDC)
-   def underline( log: object):
-      print(BColors.UNDERLINE + log + BColors.ENDC)
-   def fail( log: object):
-      print(BColors.FAIL + log + BColors.ENDC)
-   def bold( log: object):
-      print(BColors.BOLD + log + BColors.ENDC)
+      print(BColors.HEADER + str(log) + BColors.ENDC)
+   def okblue( self, log: object ):
+      print(BColors.OKBLUE + str(log) + BColors.ENDC)
+   def okcyan( self, log: object ):
+      print(BColors.OKCYAN + str(log) + BColors.ENDC)
+   def okgreen( self, log: object ):
+      print(BColors.OKGREEN + str(log) + BColors.ENDC)
+   def warn( self, log: object ):
+      print(BColors.WARNING + str(log) + BColors.ENDC)
+   def underline( self, log: object ):
+      print(BColors.UNDERLINE + str(log) + BColors.ENDC)
+   def fail( self, log: object ):
+      print(BColors.FAIL + str(log) + BColors.ENDC)
+   def bold( self, log: object ):
+      print(BColors.BOLD + str(log) + BColors.ENDC)
    def new_work(self, number_at_work: int):
       self.header(f"#### ЗАДАНИЕ {number_at_work} ####")
 
