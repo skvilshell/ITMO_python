@@ -39,21 +39,23 @@ def work5(sets):
    
 def work6(s: string):
    # Приводим текст к нижнему регистру
-    s = s.lower()
+   s = s.lower()
 
-    # Удаляем знаки препинания
-    s = s.translate(str.maketrans('', '', string.punctuation))
+   # Удаляем знаки препинания
+   s = s.translate(str.maketrans('', '', string.punctuation))
 
-    # Создаем список слов
-    words = s.split()
+   # Создаем список слов
+   words = s.split()
 
-    # Создаем словарь с подсчетом количества встречаемости слов
-    word_count = Counter(words)
+   # Создаем словарь с подсчетом количества встречаемости слов
+   word_count = Counter(words)
 
-    # Сортируем словарь по убыванию количества встречаемости слов
-    sorted_word_count = dict(sorted(word_count.items(), key=lambda x: x[1], reverse=True))
+   # Сортируем словарь по убыванию количества встречаемости слов
+   sorted_word_count = dict(sorted(word_count.items(), key=lambda x: x[1], reverse=True))
 
-    console.okblue(sorted_word_count)
+   console.okblue(sorted_word_count)
+
+
 
 s = "Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли, что они, слава богу, абсолютно нормальные люди. Уж от кого-кого, а от них никак нельзя было ожидать, чтобы они попали в какую-нибудь странную или загадочную ситуацию. Мистер и миссис Дурсль весьма неодобрительно относились к любым странностям, загадкам и прочей ерунде."
 work6(s)
