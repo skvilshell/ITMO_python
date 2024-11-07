@@ -74,3 +74,6 @@ class DoubleHash:
 			firstItr = False
 
 		return False
+	
+	def get(self):
+		return self.hashTable

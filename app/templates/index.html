@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=  , initial-scale=1.0" />
+      <title>WebApp</title>
+   </head>
+   <body>
+
+      <style>
+
+      </style>
+
+      <section>
+         <h1>Сумма чисел</h1>
+         <p>Запишите значения для первого и второго слагаемого</p>
+         <form>
+            <input type="number" value="x" id="x" />
+            <input type="number" value="y" id="y" />
+            <button type="button">отправить</button>
+         </form>
+         <h2 class="header"></h2>
+      </section>
+
+      <section>
+         <h2>
+            хэш таблица
+         </h2>
+         <button id="create-table">
+            Сформировать
+         </button>
+
+         <table>
+
+         </table>
+
+      </section>
+   </body>
+
+   <script>
+      const btn = document.querySelector("button")
+      const x = document.querySelector("#x")
+      const y = document.querySelector("#y")
+      const header = document.querySelector(".header")
+      const btn_create = document.querySelector('#create-table')
+      const table = document.querySelector('table')
+
+      btn.addEventListener("click", async (e) => {
+         if (!x.value | !y.value) {
+            alert("не ввели x или y")
+            return
+         }
+
+         const res = await fetch("http://localhost:5000/sum", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify({ x: x.value, y: y.value }),
+         }).then((res) => res.json())
+
+         header.innerHTML = res.msg
+      })
+
+      btn_create.addEventListener('click', async (e)=>{
+         const res = await fetch('http://localhost:5000/create?n=10').then(res => res.json())
+
+         res.table.forEach((item, index) => {
+            if(Array.isArray(item)){
+               table.innerHTML += `<tr>`
+               item.forEach((sub_item)=>{
+                  table.innerHTML += `<td>${item}</td>`
+               })
+               table.innerHTML += '</tr>'
+            }
+            table.innerHTML += `<td>${item}</td>`
+         })
+      })
+
+   </script>
+</html>
