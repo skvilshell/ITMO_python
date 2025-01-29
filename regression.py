@@ -44,7 +44,7 @@ multi_model = LinearRegression()
 multi_model.fit(X_train, y_train)
 results["Linear_Multi"] = evaluate_model(multi_model, X_train, X_test, y_train, y_test)
 
-results
+print(results)
 
 # Полиномиальная регрессия степени 2 и 3 для каждого признака
 degrees = [2, 3]
