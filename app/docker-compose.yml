@@ -1,0 +1,37 @@
+version: '3.8'
+name: ITMO-local
+
+services:
+
+  postgres:
+    image: postgres
+    env_file:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD : password
+      POSTGRES_DB: itmo_data
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    user: "101:101"
+    volumes:
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./fs/volumes/clickhouse/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    depends_on:
+      - postgres
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: my_password
