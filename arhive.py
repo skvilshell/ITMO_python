@@ -30,17 +30,17 @@ data['review_month'] = data['review_date'].dt.to_period('M')
 reviews_by_month = data.groupby('review_month').size()
 print("Отзывы сгруппированы по месяцам:\n", reviews_by_month)
 
-# Найдите пользователя с наибольшим количеством отправленных рецептов
+# Поиск пользователя с наибольшим количеством отправленных рецептов
 top_user = data['submitted_by'].value_counts().idxmax()
 print("Пользователи с наибольшим количеством заявок:", top_user)
 
-# Найдите первый и последний отправленные рецепты
+# ищем первый и последний отправленные рецепты
 first_recipe = data.loc[data['submitted_date'].idxmin()]
 last_recipe = data.loc[data['submitted_date'].idxmax()]
 print("Представлен первый рецепт:\n", first_recipe)
 print("Последний отправленный рецепт:\n", last_recipe)
 
-# Рассчитайте медианные значения ингредиентов и времени приготовления
+# Рассчитывается медианные значения ингредиентов и времени приготовления
 median_ingredients = data['n_ingredients'].median()
 median_prep_time = data['prep_time'].median()
 print("Среднее количество ингредиентов:", median_ingredients)
